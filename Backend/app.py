@@ -50,11 +50,13 @@ def upload_file():
 # Fetch uploaded files (mocked for simplicity)
 @app.route('/files', methods=['GET'])
 def get_files():
-    # Replace this with actual logic to fetch uploaded files from MongoDB or Pinata
-    files = [
-        {"name": "example.png", "ipfs_hash": "QmXoypizjW3WknFiJnKLwHCq1b3ZCsdBEgL9ekzEzkJo1o"}
-    ]
-    return jsonify(files), 200
+    try:
+        # Fetch files from the MongoDB collection 'foo'
+        files = list(db.foo.find({}, {"_id": 0, "name": 1, "ipfs_hash": 1}))
+        return jsonify(files), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 # Delete file from Pinata
 @app.route('/delete/<ipfs_hash>', methods=['DELETE'])

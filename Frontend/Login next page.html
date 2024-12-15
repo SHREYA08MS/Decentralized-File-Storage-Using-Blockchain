@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> DECENTRALIZED FILE storage</title>
+    <title>Decentralized File Storage</title>
     <style>
         /* General Styles */
         body {
@@ -15,202 +15,101 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #042745, #738524);
-            color: #ffffff;
+            color: #180202;
+            background: url('https://files.oaiusercontent.com/file-NxMkoG9ZfXdKSqNnTVg9Po?se=2024-12-05T16%3A06%3A03Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Ddde96223-d216-4172-86c4-93f5b3762510.webp&sig=GbpHIVmLLZzhbXA4z2oFUwrj%2BkkL0mjni11uou8kmn4%3D.png') no-repeat center center fixed;
+            background-size: cover;
             overflow-x: hidden;
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            animation: fadeInDown 1s ease;
+            font-size: 3.5rem; /* Increased font size */
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
 
-        /* Upload Form Styles */
         form {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 25px;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 30px; /* Slightly increased padding */
             border-radius: 12px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 1s ease;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        label {
+            font-size: 1.5rem; /* Larger label font size */
+            margin-bottom: 10px;
         }
 
         input[type="file"] {
             padding: 10px;
-            font-size: 1rem;
-            background: #cfd8d7;
+            font-size: 1.2rem; /* Larger input font size */
             border: none;
             border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        input[type="file"]:hover {
-            transform: scale(1.05);
+            width: 100%;
+            max-width: 300px;
         }
 
         button {
             background: #4caf50;
             border: none;
             color: white;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 12px 25px; /* Increased padding for buttons */
+            font-size: 1.5rem; /* Larger button font size */
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         button:hover {
             background: #3e8e41;
-            transform: translateY(-2px);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        button::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            z-index: 1;
-            transition: width 0.3s ease;
-        }
-
-        button:hover::before {
-            width: 100%;
         }
 
         #result {
-            margin-top: 10px;
-            font-size: 1.1rem;
-            color: #ffdddd;
+            margin-top: 15px;
+            font-size: 1.3rem; /* Increased result font size */
         }
 
-        /* File List Styles */
-        .file-list {
-            margin-top: 30px;
-            width: 80%;
-            max-width: 600px;
-            text-align: left;
-            animation: fadeIn 1s ease;
-        }
-
-        .file-item {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, background 0.3s ease;
-            animation: slideIn 0.5s ease forwards;
-            opacity: 0;
-        }
-
-        .file-item:hover {
-            background: rgba(255, 255, 255, 0.5);
-            transform: scale(1.02);
-        }
-
-        .file-item p {
-            margin: 5px 0;
-        }
-
-        .file-item button {
-            background: #f44336;
-            border: none;
-            color: rgb(23, 223, 93);
-            padding: 5px 10px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .file-item button:hover {
-            background: #85b2b2;
-        }
-
-        /* Footer Styles */
         footer {
             margin-top: 30px;
-            font-size: 1rem;
+            font-size: 1.2rem; /* Larger footer font size */
             opacity: 0.9;
-            animation: fadeIn 2s ease;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
 <body>
-    <title> Blockchain Assisted Personal Storage Space!!</title>
-    <h1>Blockchain Assisted Personal Storage Space!!</h1>
-    <form id="uploadForm">
-        <input type="file" name="file" id="fileInput" />
+    <h1>Decentralized File Storage</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="fileInput">Choose File:</label>
+        <input type="file" name="file" id="fileInput" required />
         <button type="button" onclick="uploadFile()">Upload</button>
     </form>
     <p id="result"></p>
-    <div class="file-list" id="fileList"></div>
-
     <footer>
         <p>💾 Powered by Decentralized Technologies 🌐</p>
     </footer>
 
     <script>
-        // Upload a file
         async function uploadFile() {
-            const formData = new FormData(document.getElementById('uploadForm'));
+            const fileInput = document.getElementById('fileInput');
+    
+            if (!fileInput.files[0]) {
+                document.getElementById('result').innerText = 'Error: Please choose a file.';
+                return;
+            }
+    
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+    
+            // Get the email from session or authentication (this part should be handled by the backend)
+            const email = "shreyamahadikar53@gmail.com";  // Replace with logic to fetch the logged-in user's email
+            formData.append("email", email);  // Pass email automatically to the server
+    
+            document.getElementById('result').innerText = 'Uploading file...';
+    
             try {
                 const response = await fetch('http://127.0.0.1:5000/upload', {
                     method: 'POST',
@@ -218,9 +117,7 @@
                 });
                 const result = await response.json();
                 if (response.ok) {
-                    document.getElementById('result').innerText =
-                        `File uploaded successfully! IPFS Hash: ${result.ipfs_hash}`;
-                    fetchFiles(); // Refresh the file list
+                    document.getElementById('result').innerText = `File uploaded successfully! IPFS Hash: ${result.ipfs_hash}`;
                 } else {
                     document.getElementById('result').innerText = `Error: ${result.error}`;
                 }
@@ -228,53 +125,7 @@
                 document.getElementById('result').innerText = `Error: ${error.message}`;
             }
         }
-
-        // Fetch uploaded files
-        async function fetchFiles() {
-            const fileList = document.getElementById('fileList');
-            fileList.innerHTML = 'Loading files...';
-            try {
-                const response = await fetch('http://127.0.0.1:5000/files');
-                const files = await response.json();
-                if (response.ok) {
-                    fileList.innerHTML = files
-                        .map(
-                            file =>
-                                `<div class="file-item">
-                                    <p><strong>Name:</strong> ${file.name}</p>
-                                    <p><strong>IPFS Hash:</strong> ${file.ipfs_hash}</p>
-                                    <button onclick="deleteFile('${file.ipfs_hash}')">Delete</button>
-                                </div>`
-                        )
-                        .join('');
-                } else {
-                    fileList.innerHTML = 'Error fetching files';
-                }
-            } catch (error) {
-                fileList.innerHTML = `Error: ${error.message}`;
-            }
-        }
-
-        // Delete a file
-        async function deleteFile(ipfsHash) {
-            try {
-                const response = await fetch(`http://127.0.0.1:5000/delete/${ipfsHash}`, {
-                    method: 'DELETE'
-                });
-                const result = await response.json();
-                if (response.ok) {
-                    alert(result.message);
-                    fetchFiles(); // Refresh the file list
-                } else {
-                    alert(`Error: ${result.error}`);
-                }
-            } catch (error) {
-                alert(`Error: ${error.message}`);
-            }
-        }
-
-        // Load files on page load
-        fetchFiles();
     </script>
+    
 </body>
 </html>
